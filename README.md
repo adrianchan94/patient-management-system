@@ -82,6 +82,15 @@ The frontend implementation includes:
 
 ## Testing
 
+### Dynamic Data Generator
+We've implemented a dynamic data generator to facilitate testing and demonstration of the system:
+- Generates realistic test patient data with randomized names, IDs, and test results
+- Creates sample data for different organizations with appropriate field values
+- Allows specifying the number of records to generate
+- Supports generating data with specific characteristics for targeted testing scenarios
+- Provides a convenient way for developers and testers to populate the database with test data
+- Accessible through a simple UI button in the frontend for easy data generation
+
 ### Backend Testing
 #### Profile ID Filtering
 - Created test profiles with known UUIDs

@@ -1,0 +1,7 @@
+{
+    "db": {
+        "url": "postgresql://dummy:dummy@postgres:5432/services",
+        "dbname": "services",
+        "schema": "test"
+    }
+}

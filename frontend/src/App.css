@@ -1,0 +1,704 @@
+/* Global reset for consistent styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base body styling */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Main container layout - uses flexbox for sidebar and content */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== NAVIGATION SIDEBAR STYLES ===== */
+.navigation {
+  width: 250px;
+  background-color: #4CAF50; /* Green color for the sidebar */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position so it stays visible when scrolling */
+  z-index: 1000; /* Ensure navigation is above other content */
+}
+
+/* Logo container styling */
+.logo {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separator */
+  margin-bottom: 20px;
+}
+
+/* Logo image styling */
+.logo img {
+  max-width: 100%;
+}
+
+/* Navigation items container */
+.nav-items {
+  flex-grow: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual navigation item */
+.nav-item {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+/* Hover and active state for navigation items */
+.nav-item:hover, .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight */
+}
+
+/* Logout item positioned at the bottom */
+.nav-item.logout {
+  margin-top: auto; /* Push to bottom */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separator */
+}
+
+/* ===== MAIN CONTENT AREA STYLES ===== */
+.main-content {
+  flex-grow: 1; /* Take up remaining space */
+  margin-left: 250px; /* Same as navigation width */
+  padding: 20px;
+  width: calc(100% - 250px); /* Ensure content doesn't overflow */
+}
+
+/* Controls section containing org selector, search bar, and data generator */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Header with title and organization selector */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.data-generator-toggle {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.data-generator-toggle:hover {
+  background-color: #5a6268;
+}
+
+/* Organization selector container */
+.org-selector {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* Organization selector dropdown */
+.org-selector select {
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  flex-grow: 1;
+  max-width: 300px;
+}
+
+/* ===== MOCK DATA CONTROLS STYLES ===== */
+.mock-controls {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px dashed #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.mock-controls button {
+  padding: 8px 15px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.mock-controls button:hover {
+  background-color: #5a6268;
+}
+
+.size-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.size-controls select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.size-controls span {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+/* ===== SEARCH SECTION STYLES ===== */
+.search-section {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-section h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.search-bar select,
+.search-bar input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-bar select {
+  min-width: 150px;
+  background-color: white;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.search-bar button:hover {
+  background-color: #3a7bc8;
+}
+
+.search-bar button:last-child {
+  background-color: #6c757d;
+}
+
+.search-bar button:last-child:hover {
+  background-color: #5a6268;
+}
+
+.search-bar .search-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar .search-button:hover {
+  background-color: #0b7dda;
+}
+
+.search-bar .clear-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar .clear-button:hover {
+  background-color: #5a6268;
+}
+
+/* ===== PATIENT TABLE STYLES ===== */
+.patient-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Patient Table Styling */
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.patient-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 2px solid #ddd;
+}
+
+.patient-table td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.patient-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Result value styling */
+.result-negative {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.result-positive {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.result-pending {
+  color: #ffc107;
+  font-style: italic;
+}
+
+/* No results message */
+.no-results {
+  background-color: #f8f9fa;
+  padding: 30px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 20px 0;
+  color: #6c757d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== PAGINATION STYLES ===== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #e9e9e9;
+}
+
+.pagination button.active {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ===== LOADING AND ERROR STATES ===== */
+.loading-container, .error-container {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+.loading-spinner.visible {
+  opacity: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 16px;
+  color: #495057;
+  margin-top: 10px;
+}
+
+.error-container .error-message {
+  color: #721c24;
+  margin-bottom: 15px;
+}
+
+.retry-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.retry-button:hover {
+  background-color: #c82333;
+}
+
+/* Add these styles for the database controls */
+.header-actions {
+  display: flex;
+  margin-left: auto;
+}
+
+.action-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.action-button:hover {
+  background-color: #0b7dda;
+}
+
+/* Data Generator Styles */
+.data-generator {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.data-generator h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #495057;
+  font-size: 16px;
+}
+
+.data-generator p {
+  margin-bottom: 15px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.generate-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-button:hover {
+  background-color: #218838;
+}
+
+.generate-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.success-message {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Search container */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Active search indicator */
+.active-search-indicator {
+  display: flex;
+  align-items: center;
+  background-color: #e2f2ff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #0366d6;
+  margin-top: 5px;
+}
+
+.active-search-indicator span {
+  flex-grow: 1;
+}
+
+.remove-search-button {
+  background: none;
+  border: none;
+  color: #0366d6;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.remove-search-button:hover {
+  color: #024ea4;
+}
+
+/* Highlight matched patient names */
+.patient-name-match {
+  background-color: #fffde7;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+/* Search error message */
+.search-error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* App container */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* App header */
+.app-header {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.app-header h1 {
+  color: #333;
+  font-size: 24px;
+  margin: 0;
+}
+
+/* App content */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Organization selector */
+.organization-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.organization-selector label {
+  font-weight: bold;
+  color: #333;
+  min-width: 150px;
+}
+
+.organization-selector select {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+}
+
+/* Search container */
+.search-container {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Results container */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Pagination wrapper */
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Loading container */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error container */
+.error-container {
+  padding: 20px;
+  background-color: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #d32f2f;
+  margin-bottom: 15px;
+}
+
+.retry-button {
+  padding: 8px 16px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background-color: #b71c1c;
+}

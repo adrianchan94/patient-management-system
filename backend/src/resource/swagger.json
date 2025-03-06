@@ -1,0 +1,587 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Prenetics Platform Test Service",
+    "description": "Prenetics Platform Test Service",
+    "contact": {
+      "email": "hr@prenetics.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://github.com/Prenetics/prenetics-backend-assignment/blob/main/LICENSE"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/test"
+    }
+  ],
+  "tags": [
+    {
+      "name": "organisation"
+    },
+    {
+      "name": "profile"
+    },
+    {
+      "name": "sample"
+    }
+  ],
+  "paths": {
+    "/v1.0/org": {
+      "get": {
+        "tags": [
+          "organisation"
+        ],
+        "summary": "Get list of organisations",
+        "operationId": "getOrg",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManyOrganisations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/org/{org}/profile": {
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Create a profile of an organisation",
+        "operationId": "createProfile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "profile created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/org/{org}/profile/{profile}": {
+      "get": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Get a profile of an organisation",
+        "operationId": "getProfile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/org/{org}/sample": {
+      "get": {
+        "tags": [
+          "sample"
+        ],
+        "summary": "Get results of an organisation",
+        "operationId": "getResults",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[offset]",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[limit]",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "sampleId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "patientName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "activateTime",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resultTime",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resultValue",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "negative",
+                "positive"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManySamples"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "to be implemented"
+          }
+        }
+      }
+    },
+    "/v1.0/org/{org}/profile/{profile}/sample": {
+      "post": {
+        "tags": [
+          "sample"
+        ],
+        "summary": "Create a result for an organisation",
+        "operationId": "createResult",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SampleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "profile created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneSample"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1.0/org/{org}/profile/{profile}/sample/{sample}": {
+      "get": {
+        "tags": [
+          "sample"
+        ],
+        "summary": "Get a result of an organisation",
+        "operationId": "getProfileResult",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "org",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "in": "path",
+            "name": "sample",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneSample"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SampleRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "sample"
+                ]
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "sampleId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "resultType": {
+                    "type": "string",
+                    "enum": [
+                      "rtpcr",
+                      "antigen",
+                      "antibody"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Sample": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "sample"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "resultType": {
+                "type": "string",
+                "enum": [
+                  "rtpcr",
+                  "antigen",
+                  "antibody"
+                ]
+              },
+              "sampleId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "activateTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "resultTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "result": {
+                "type": "string",
+                "enum": [
+                  "negative",
+                  "positive"
+                ]
+              }
+            },
+            "required": [
+              "resultType",
+              "sampleId",
+              "activateTime"
+            ]
+          }
+        }
+      },
+      "OneSample": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Sample"
+          }
+        }
+      },
+      "SearchSample": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Sample"
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "profile": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "profile"
+                        ]
+                      },
+                      "id": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ManySamples": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchSample"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Profile"
+            }
+          }
+        }
+      },
+      "ProfileRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "profile"
+                ]
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Wayne"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "profile"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "John Wayne"
+              }
+            }
+          }
+        }
+      },
+      "OneProfile": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Profile"
+          }
+        }
+      },
+      "Organisation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "organisation"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Prenetics"
+              }
+            }
+          }
+        }
+      },
+      "ManyOrganisations": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Organisation"
+            }
+          }
+        }
+      }
+    }
+  }
+}

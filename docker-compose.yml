@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=production
+      - TZ=UTC
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dummy
+      - POSTGRES_PASSWORD=dummy
+      - POSTGRES_DB=services
+      - TZ=UTC
+      - PGTZ=UTC
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "9080:8080"
+    environment:
+      - BASE_URL=/swagger
+      - API_URL=http://backend:8080/test/v1.0/swagger
+
+volumes:
+  postgres_data:

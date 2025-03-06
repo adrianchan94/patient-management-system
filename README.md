@@ -83,7 +83,7 @@ The frontend implementation includes:
 ## Testing
 
 ### Dynamic Data Generator
-We've implemented a dynamic data generator to facilitate testing and demonstration of the system:
+I've implemented a dynamic data generator to facilitate testing and demonstration of the system:
 - Generates realistic test patient data with randomized names, IDs, and test results
 - Creates sample data for different organizations with appropriate field values
 - Allows specifying the number of records to generate
